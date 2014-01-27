@@ -1,8 +1,52 @@
-// main.js
+// Main app script with the configuration
+// Created 26.01.2014 lukasz.mioduszewski@gmail.com
+//
 
-// create the module
 
-	var app = angular.module('PersonaApp', []);
+	// create the module
+
+	var app = angular.module('personaApp', ['ngRoute']);
+
+
+	//route config
+	app.config(['$routeProvider', function($routeProvider){
+		$routeProvider
+
+		// home page
+		.when('/', {
+			templateUrl : 'home.html',
+			controller : 'mainController'
+		})
+
+		// about page
+		.when('/about', {
+			templateUrl : 'about.html',
+			controller : 'mainController'
+		})
+
+		// contact page
+		.when('/contact', {
+			templateUrl : 'contact.html',
+			controller : 'mainController'
+		})
+
+		// otherwise
+		.otherwise({
+			redirectTo: '/'
+		});
+
+	}]);
+
+
+
+
+
+	// setting main controller
+
+	app.controller('mainController', function($scope){
+		console.log('hello log >>>>>>>>>>>>>>>>>>>>>>');
+		;
+	});
 
 	app.run(function($rootScope){
 		$rootScope.name = "Honey Luke TestApp";

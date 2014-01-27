@@ -1,9 +1,10 @@
-<html ng-app="PersonaApp">
+<html ng-app="personaApp">
 <head>
 <!-- SCROLLS -->
 	  
 	  <!-- angular 2.1.10 -->
 	  <script src="angular.min.js"></script>
+	  <script src="angular-route.min.js"></script>
 	  <!-- main application configuration script -->
 	  <script src="main.js"></script>
 
@@ -11,7 +12,7 @@
 
 
 
-
+	  <!-- TODO refactor -->
 	  <!-- load bootstrap and fontawesome via CDN -->
 	  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 	  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
@@ -20,9 +21,35 @@
 	  <!-- load jquery, bootstrap, and angular via CDN -->
 	  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 	  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-</head>
-<body >
 
+
+
+
+	  <!-- templates, for local testing -->
+	  <script type="text/ng-template" id="home.html">
+	  	<!-- home content -->
+		<div class="jumbotron text-center">
+			<h1>Home page</h1>
+		</div>
+		<!-- END home content -->
+	  </script>
+	  <script type="text/ng-template" id="about.html">
+	  	<!-- about content -->
+		<div class="jumbotron text-center">
+			<h1>about</h1>
+		</div>
+		<!-- END about content -->
+		</script>
+	  <script type="text/ng-template" id="contact.html">
+	  	<!-- contact content -->
+		<div class="jumbotron text-center">
+			<h1>contact</h1>
+		</div>
+		<!-- END contact content -->
+	  </script>
+	  <!-- end templates, for local testing -->
+</head>
+<body ng-controller="mainController">
 	<header>
 		<nav class="navbar navbar-default">
 			<div class="container">
@@ -38,16 +65,18 @@
 		</nav>
 	</header>
 	<!-- MAIN CONTENT -->
-	<div id="main" class="container text-center" ng-controller="MyController">
+	<div id="main" class="container text-center">
+		<!-- Angular template -->
+		<!-- This is where content will be injected -->
+		<div ng-view=""></div>	
 
-	<!-- bootstrap test and angular test -->
+		<!-- bootstrap test and angular test -->
 		<div class="row">
 			<div class="col-md-4" >
-			>{{person.name}}
 			</div>
 			<div class="col-md-4">
 				<div clas="input-group">
-					<input type="text" data-ng-model="yourName" class="form-control" placeholder="What is your name ?">
+					<input type="text" ng-model="yourName" class="form-control" placeholder="What is your name ?">
 				</div>	
 			</div>
 			<div class="col-md-4">
@@ -56,23 +85,6 @@
 				</p>
 			</div>
 		</div>
-
-
-		<div class="container">
-			<div class="col=md-12">
-				<div ng-controller="ParentController">
-  					<div ng-controller="ChildController">
-    					<input type="text" ng-model="person.name" placeholder="Name"></input>
-    						<a ng-click="sayHello()" class="btn btn-default">Say hello</a>
-  					</div>
-  					{{ person }}
-				</div>
-			</div>
-		</div>
-
-		<!-- Angular template -->
-		<!-- This is where content will be injected -->
-		<div data-ng-view></div>	
 	</div>
 
 	<!-- FOOTER -->
